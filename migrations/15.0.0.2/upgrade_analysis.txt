@@ -1,0 +1,7 @@
+---Models in module 'bi_hr_payroll'---
+---Fields in module 'bi_hr_payroll'---
+bi_hr_payroll / hr.payslip               / company (many2one)            : DEL relation: res.company
+---XML records in module 'bi_hr_payroll'---
+DEL ir.actions.act_window: bi_hr_payroll.act_payslip_lines
+NEW ir.model.access: bi_hr_payroll.access_payslip_lines_contribution_register
+DEL ir.sequence: bi_hr_payroll.seq_salary_nom_slip
