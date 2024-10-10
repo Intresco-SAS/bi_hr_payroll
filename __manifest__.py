@@ -22,6 +22,7 @@
     'depends': [
         'hr_contract',
         'hr_holidays',
+        'hr_work_entry_holidays',
     ],
     'data': [
         'security/hr_payroll_security.xml',
