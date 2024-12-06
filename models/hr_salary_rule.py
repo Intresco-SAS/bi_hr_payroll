@@ -23,7 +23,7 @@ class HrPayrollStructure(models.Model):
     name = fields.Char(required=True)
     code = fields.Char(string='Reference', required=True)
     company_id = fields.Many2one('res.company', string='Company', required=True,
-        copy=False, default=lambda self: self.env['res.company']._company_default_get())
+        copy=False, default=lambda self: self.env.company)
     note = fields.Text(string='Description')
     parent_id = fields.Many2one('hr.payroll.structure', string='Parent', default=_get_parent)
     children_ids = fields.One2many('hr.payroll.structure', 'parent_id', string='Children', copy=True)
@@ -61,7 +61,7 @@ class HrContributionRegister(models.Model):
     _description = 'Contribution Register'
 
     company_id = fields.Many2one('res.company', string='Company',
-        default=lambda self: self.env['res.company']._company_default_get())
+        default=lambda self: self.env.company)
     partner_id = fields.Many2one('res.partner', string='Partner')
     name = fields.Char(required=True)
     register_line_ids = fields.One2many('hr.payslip.line', 'register_id',
@@ -80,7 +80,7 @@ class HrSalaryRuleCategory(models.Model):
     children_ids = fields.One2many('hr.salary.rule.category', 'parent_id', string='Children')
     note = fields.Text(string='Description')
     company_id = fields.Many2one('res.company', string='Company',
-        default=lambda self: self.env['res.company']._company_default_get())
+        default=lambda self: self.env.company)
 
     @api.constrains('parent_id')
     def _check_parent_id(self):
@@ -111,7 +111,7 @@ class HrSalaryRule(models.Model):
         help="Used to display the salary rule on payslip.")
     parent_rule_id = fields.Many2one('hr.salary.rule', string='Parent Salary Rule', index=True)
     company_id = fields.Many2one('res.company', string='Company',
-        default=lambda self: self.env['res.company']._company_default_get())
+        default=lambda self: self.env.company)
     condition_select = fields.Selection([
         ('none', 'Always True'),
         ('range', 'Range'),
