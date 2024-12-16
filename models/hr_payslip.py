@@ -467,7 +467,10 @@ class HrPayslip(models.Model):
 
         if not self.contract_id.struct_id:
             return
-        self.struct_id = self.contract_id.struct_id
+        if self.struct_id and self.struct_id.code in ('prim_adm','	prim_ven','prim_ops'):
+            pass
+        else:
+            self.struct_id = self.contract_id.struct_id
         if self.contract_id: # Ccondicional para que al selecionar un empleado (Nomina Individual) la tabla de Dias Tabajados no este vacia.
             contract_ids = self.contract_id.ids
         # computation of the salary input
